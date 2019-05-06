@@ -27,5 +27,6 @@ $app->setSigla(SYSTEM_ACRONYM);
 $app->setVersionSystem(SYSTEM_VERSION);
 
 $app->setMainMenuFile('includes/menu.php');
+$app->setDefaultModule('sorteio.php');
 $app->run();
 ?>
