@@ -20,7 +20,8 @@ class Sorteio {
 	}
 
 	public function sortear( $qtd, $postArquivoMateria){
-		$arrayArquivo = $this->getArrayArquivo($postArquivoMateria);
+        $arrayArquivo = $this->getArrayArquivo($postArquivoMateria);
+        $result = 1;
 		return $result;
 	}
 }

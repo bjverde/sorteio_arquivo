@@ -47,7 +47,7 @@ switch( $acao ) {
                 var_dump($postArquivoMateria);
                 $class = new Sorteio();
                 $qtd = $frm->getFieldValue('QTD');
-                $class->sortear($qtd,$postArquivoMateria);
+                $resultado = $class->sortear($qtd,$postArquivoMateria);
                 if($resultado==1) {
                     $frm->setMessage('Registro gravado com sucesso!!!');
                     $frm->clearFields();
