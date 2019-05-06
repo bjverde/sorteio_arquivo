@@ -44,7 +44,6 @@ switch( $acao ) {
         try{
             if ( $frm->validate() ) {
                 $postArquivoMateria = getPostArquivoMateria($frm,$arquivoMateria);
-                var_dump($postArquivoMateria);
                 $class = new Sorteio();
                 $qtd = $frm->getFieldValue('QTD');
                 $resultado = $class->sortear($qtd,$postArquivoMateria);
