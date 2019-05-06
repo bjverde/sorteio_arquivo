@@ -12,11 +12,20 @@ class Sorteio {
         $meuArray = Array();
         $arquivoNomeCaminho = $postArquivoMateria['arquivoMateria_temp_name'];
         $file = fopen($arquivoNomeCaminho, 'r');
+        while ( ($line = fgets ($file)) !== false ){
+            $meuArray[] = $line;
+        }
+        fclose($file);
+        /*
+        //Para arquivo CSV
+        $file = fopen($arquivoNomeCaminho, 'r');
         while (($line = fgetcsv($file)) !== false){
             //$meuArray[] = StringHelper::str2utf8($line);
             $meuArray[] = $line;
         }
         fclose($file);
+        */
+        
 		return $meuArray;
     }
     
@@ -26,7 +35,7 @@ class Sorteio {
             $keySorteada = array_rand( $arrayArquivo );
             $arrayComtemplados['LINHA'][]=$i;
             $arrayComtemplados['KEYO'][]=$keySorteada;
-            $arrayComtemplados['VALOR'][]=$arrayArquivo[$keySorteada][0];
+            $arrayComtemplados['VALOR'][]=$arrayArquivo[$keySorteada];
         }
         $_SESSION[APLICATIVO]['COMTEMPLADOS'] = $arrayComtemplados;
 		return $arrayComtemplados;
@@ -49,9 +58,7 @@ class Sorteio {
 	public function sortear( $qtd, $postArquivoMateria){
         $arrayArquivo = $this->getArrayArquivo($postArquivoMateria);
         $arrayComtemplados = $this->getArrayComtemplados($qtd,$arrayArquivo);
-        $arrayFilaEspera = $this->getArrayFilaEspera($arrayArquivo,$arrayComtemplados);
-        d($arrayComtemplados);
-        d($arrayFilaEspera);
+        $this->getArrayFilaEspera($arrayArquivo,$arrayComtemplados);
         $result = 1;
 		return $result;
 	}

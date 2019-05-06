@@ -11,7 +11,7 @@
  */
 
 defined('APLICATIVO') or die();
-$frm = new TForm('Resultado');
+$frm = new TForm('Resultado',800);
 $frm->setShowCloseButton(false);
 $frm->setFlat(true);
 $frm->setMaximize(true);
@@ -25,11 +25,24 @@ $gride = new TGrid('gdComtemplados' // id do gride
 
 
 $gride->addColumn('LINHA', 'Posição');
-$gride->addColumn('KEYO', 'Ativo');
+//$gride->addColumn('KEYO', 'Ativo');
 $gride->addColumn('VALOR', 'Nome');
+$gride->enableDefaultButtons(false);
+$frm->addHtmlField('grideComtemplados', $gride);
 
-$frm->addHtmlField('gride', $gride);
 
+$dados = $_SESSION[APLICATIVO]['FILAESPERA'];
+$gride = new TGrid('gdEspera' // id do gride
+                , 'Fila de Espera' // titulo do gride
+                , $dados   // array de dados
+                );     // chave primaria
+
+
+$gride->addColumn('LINHA', 'Posição');
+//$gride->addColumn('KEYO', 'Ativo');
+$gride->addColumn('VALOR', 'Nome');
+$gride->enableDefaultButtons(false);
+$frm->addHtmlField('grideEspera', $gride);
 
 
 $frm->show();
