@@ -15,7 +15,7 @@ define('SYSTEM_ACRONYM' , 'sort');
 define('SYSTEM_VERSION' , '0.0.0');
 define('APLICATIVO'     , SYSTEM_ACRONYM);
 
-define('FORMDIN_VERSION_MIN_VERSION', '4.5.3-alpha');
+define('FORMDIN_VERSION_MIN_VERSION', '4.5.2');
 
 if (! defined ( 'DS' )) {
     define('DS'   , DIRECTORY_SEPARATOR);
