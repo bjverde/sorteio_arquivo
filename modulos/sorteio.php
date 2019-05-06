@@ -51,6 +51,7 @@ switch( $acao ) {
                 if($resultado==1) {
                     $frm->setMessage('Registro gravado com sucesso!!!');
                     $frm->clearFields();
+                    $frm->redirect('resultado.php');
                 }else{
                     $frm->setMessage($resultado);
                 }

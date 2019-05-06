@@ -26,8 +26,9 @@ class Sorteio {
             $keySorteada = array_rand( $arrayArquivo );
             $arrayComtemplados['LINHA'][]=$i;
             $arrayComtemplados['KEYO'][]=$keySorteada;
-            $arrayComtemplados['VALOR'][]=$arrayArquivo[$keySorteada];
+            $arrayComtemplados['VALOR'][]=$arrayArquivo[$keySorteada][0];
         }
+        $_SESSION[APLICATIVO]['COMTEMPLADOS'] = $arrayComtemplados;
 		return $arrayComtemplados;
     }
     
@@ -41,6 +42,7 @@ class Sorteio {
             $arrayFilaEspera['KEYO'][]=$keySorteada;
             $arrayFilaEspera['VALOR'][]=$listEspera[$keySorteada];
         }
+        $_SESSION[APLICATIVO]['FILAESPERA'] = $arrayFilaEspera;
 		return $arrayFilaEspera;
 	}    
 
