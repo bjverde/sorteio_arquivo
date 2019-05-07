@@ -36,7 +36,6 @@ class Sorteio {
         $result['POSICAO'] = array_merge($original['POSICAO'], $arrayIncluir['POSICAO']);
         $result['KEYO']    = array_merge($original['KEYO'], $arrayIncluir['KEYO']);
         $result['VALOR']   = array_merge($original['VALOR'], $arrayIncluir['VALOR']);
-        d($result);
         $_SESSION[APLICATIVO]['COMTEMPLADOS'] = $result;
     }
 
