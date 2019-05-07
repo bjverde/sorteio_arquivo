@@ -16,33 +16,18 @@ $frm->setShowCloseButton(false);
 $frm->setFlat(true);
 $frm->setMaximize(true);
 
-
 $dados = $_SESSION[APLICATIVO]['COMTEMPLADOS'];
 $gride = new TGrid('gdComtemplados' // id do gride
-                , 'Lista de Comtemplados' // titulo do gride
+                , RequestHelper::get('NOME') // titulo do gride
                 , $dados   // array de dados
                 );     // chave primaria
 
-
-$gride->addColumn('LINHA', 'Posição');
+$gride->addColumn('SITUACAO', 'Situação');
+$gride->addColumn('POSICAO', 'Posição');
 //$gride->addColumn('KEYO', 'Ativo');
 $gride->addColumn('VALOR', 'Nome');
 $gride->enableDefaultButtons(false);
 $frm->addHtmlField('grideComtemplados', $gride);
-
-
-$dados = $_SESSION[APLICATIVO]['FILAESPERA'];
-$gride = new TGrid('gdEspera' // id do gride
-                , 'Fila de Espera' // titulo do gride
-                , $dados   // array de dados
-                );     // chave primaria
-
-
-$gride->addColumn('LINHA', 'Posição');
-//$gride->addColumn('KEYO', 'Ativo');
-$gride->addColumn('VALOR', 'Nome');
-$gride->enableDefaultButtons(false);
-$frm->addHtmlField('grideEspera', $gride);
 
 
 $frm->show();

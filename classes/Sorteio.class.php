@@ -28,14 +28,26 @@ class Sorteio {
         
 		return $meuArray;
     }
-    
+
+    public function mergeArrayComtemplados($arrayIncluir){
+        $original = $_SESSION[APLICATIVO]['COMTEMPLADOS'];
+        $result =  array();
+        $result['SITUACAO']= array_merge($original['SITUACAO'], $arrayIncluir['SITUACAO']);
+        $result['POSICAO'] = array_merge($original['POSICAO'], $arrayIncluir['POSICAO']);
+        $result['KEYO']    = array_merge($original['KEYO'], $arrayIncluir['KEYO']);
+        $result['VALOR']   = array_merge($original['VALOR'], $arrayIncluir['VALOR']);
+        d($result);
+        $_SESSION[APLICATIVO]['COMTEMPLADOS'] = $result;
+    }
+
     public function getArrayComtemplados($qtd,$arrayArquivo){
         $arrayComtemplados = Array();
         for ($i = 1; $i <= $qtd; $i++) {
             $keySorteada = array_rand( $arrayArquivo );
-            $arrayComtemplados['LINHA'][]=$i;
-            $arrayComtemplados['KEYO'][]=$keySorteada;
-            $arrayComtemplados['VALOR'][]=$arrayArquivo[$keySorteada];
+            $arrayComtemplados['SITUACAO'][]='Contemplado';
+            $arrayComtemplados['POSICAO'][]=$i;
+            $arrayComtemplados['KEYO'][]=$keySorteada;            
+            $arrayComtemplados['VALOR'][]=StringHelper::str2utf8($arrayArquivo[$keySorteada]);
         }
         $_SESSION[APLICATIVO]['COMTEMPLADOS'] = $arrayComtemplados;
 		return $arrayComtemplados;
@@ -47,13 +59,14 @@ class Sorteio {
         $arrayFilaEspera=array();
         for ($i = 1; $i <= $qtd; $i++) {
             $keySorteada = array_rand( $listEspera );
-            $arrayFilaEspera['LINHA'][]=$i;
+            $arrayFilaEspera['SITUACAO'][]='Fila de espera';
+            $arrayFilaEspera['POSICAO'][]=$i;
             $arrayFilaEspera['KEYO'][]=$keySorteada;
-            $arrayFilaEspera['VALOR'][]=$listEspera[$keySorteada];
+            $arrayFilaEspera['VALOR'][]=StringHelper::str2utf8($arrayArquivo[$keySorteada]);
         }
-        $_SESSION[APLICATIVO]['FILAESPERA'] = $arrayFilaEspera;
+        $this->mergeArrayComtemplados($arrayFilaEspera);
 		return $arrayFilaEspera;
-	}    
+	}
 
 	public function sortear( $qtd, $postArquivoMateria){
         $arrayArquivo = $this->getArrayArquivo($postArquivoMateria);

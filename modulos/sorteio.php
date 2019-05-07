@@ -12,13 +12,15 @@
 
 defined('APLICATIVO') or die();
 $arquivoMateria = 'arquivoMateria';
-$frm = new TForm('Sorteio de Nomes');
+$frm = new TForm('Sorteio de Nomes',400,800);
 $frm->setShowCloseButton(false);
 $frm->setFlat(true);
 $frm->setMaximize(true);
 
-$frm->addNumberField('QTD', 'Quantidade:', 5, true, 0, true, null, 5, null, null, null, true, true);
-$frm->addFileField($arquivoMateria,'Arquivo:',true,'txt','1M',40,true);
+$frm->setColumns('100,700');
+$frm->addTextField('NOME', 'Nome do evento', 200, true, 80, null, null, null, null, false);
+$frm->addNumberField('QTD', 'Quantidade de comtemplados', 5, true, 0, true, null, 0, null, null, null, true, true);
+$frm->addFileField($arquivoMateria,'Arquivo',true,'txt','1M',40,true);
 
 $frm->addButton('Salvar', null, 'Salvar', null, null, true, false);
 $frm->addButton('Limpar', null, 'Limpar', null, null, false, false);
